@@ -5,6 +5,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
  
+// mudando o fuzo horaio para menos 3 horas.
+  process.env.TZ = '-03.00'; 
+
   // Habilitando globalmente a validação de dados
 
  app.useGlobalPipes(new ValidationPipe());
@@ -12,6 +15,6 @@ async function bootstrap() {
   // habilitando o cors na aplicação
  app.enableCors();
  
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 4000);
 }
 bootstrap();
