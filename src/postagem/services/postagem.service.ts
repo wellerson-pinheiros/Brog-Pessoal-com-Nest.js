@@ -5,18 +5,22 @@ import { DeleteResult, ILike, Repository } from "typeorm";
 
 
 
+
 @Injectable()
-export class PostagemService{
-    findAll(): Promise<postagem[]> {
-        throw new Error("Method not implemented.");
+export class PostagemService {
+    constructor(
+        @InjectRepository(postagem)
+        private postagemRepository: Repository<postagem>
+    ) { }
+
+    async findAll(): Promise<postagem[]> {
+        return await this.postagemRepository.find({
+            relations:{
+                tema: true
+            }
+        });
     }
 
-    constructor(@InjectRepository(postagem)
-    private postagemRepository: Repository<postagem>
-){}
-async findall(id: number):Promise<postagem[]>{
-    return this.postagemRepository.find(); // select * from tb_postagens;
-}
  
 async findById(id: number): Promise <postagem> {
 
@@ -25,8 +29,12 @@ async findById(id: number): Promise <postagem> {
         where:
         {
             id
+        },
+        relations:{
+            tema:true
         }
     })
+
 
     if(!postagem)
         throw new HttpException('Postagem não encontrada!', HttpStatus.NOT_FOUND)
@@ -37,6 +45,9 @@ async findByTitulo (titulo:string): Promise<postagem[]>{
     return this.postagemRepository.find({
         where:{
             titulo: ILike(`%${titulo}%`)
+        },
+        relations:{
+            tema:true
         }
     });
     }
