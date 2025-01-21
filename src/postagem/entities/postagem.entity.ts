@@ -3,6 +3,7 @@ import { Tema } from "src/Tema/entities/tema.entity"
 import { Usuario } from "src/usuario/entities/usuario.entity"
 import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, ManyToOne } from "typeorm"
 
+
 @Entity({name: "tb_postagens"})
 export class Postagem {
 

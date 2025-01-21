@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { postagemModule } from './postagem/postagem.module';
+import { PostagemModule } from './postagem/postagem.module';
 
 import { Tema } from './Tema/entities/tema.entity';
 import { TemaModule } from './Tema/tema.module';
@@ -21,7 +21,7 @@ import { Postagem } from './postagem/entities/postagem.entity';
       synchronize: true,
       logging: true,
     }),
-    postagemModule,
+    PostagemModule,
     TemaModule,
     AuthModule,
     UsuarioModule

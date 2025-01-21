@@ -1,9 +1,8 @@
-import { JwtService } from '@nestjs/jwt';
-import { UsuarioService } from './../../usuario/services/usuario.service';
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-
-import { UsuarioLogin } from '../entities/usuariologin.entity';
-import { Bcrypt } from 'src/bcrypt/bcrypt';
+import { Injectable, HttpException, HttpStatus } from "@nestjs/common"
+import { JwtService } from "@nestjs/jwt"
+import { Bcrypt } from "src/bcrypt/bcrypt"
+import { UsuarioService } from "src/usuario/services/usuario.service"
+import { UsuarioLogin } from "../entities/usuariologin.entity"
 
 
 @Injectable()
@@ -21,7 +20,7 @@ export class AuthService{
         if(!buscaUsuario)
             throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND)
 
-        const matchPassword = await this.bcrypt.compararSenhas(password, buscaUsuario.senha)
+        const matchPassword = await this.bcrypt.compararSenhas(buscaUsuario.senha, password)
 
         if(buscaUsuario && matchPassword){
             const { senha, ...resposta } = buscaUsuario
@@ -34,7 +33,7 @@ export class AuthService{
 
     async login(usuarioLogin: UsuarioLogin){
 
-        const payload = { sub: usuarioLogin.usuario }
+        const payload = { sub: usuarioLogin.usuario}
 
         const buscaUsuario = await this.usuarioService.findByUsuario(usuarioLogin.usuario)
 
