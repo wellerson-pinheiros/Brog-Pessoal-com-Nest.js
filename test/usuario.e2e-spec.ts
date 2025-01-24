@@ -1,16 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
- 
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppModule } from '../src/app.module';
- 
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 describe('Testes dos Módulos Usuario e Auth (e2e)', () => {
- 
+
   let token: any;
   let usuarioId: any;
   let app: INestApplication;
- 
+
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
@@ -21,19 +20,16 @@ describe('Testes dos Módulos Usuario e Auth (e2e)', () => {
           synchronize: true,
           dropSchema: true,
         }),
-        AppModule
-      ],
+        AppModule],
     }).compile();
- 
+
     app = moduleFixture.createNestApplication();
     app.useGlobalPipes(new ValidationPipe());
     await app.init();
   });
- 
-  afterAll(async () => {
-    await app.close();
-  })
- 
+
+
+
   it("01 - Deve Cadastrar um novo Usuário", async () => {
     const resposta = await request(app.getHttpServer())
       .post('/usuarios/cadastrar')
@@ -44,12 +40,10 @@ describe('Testes dos Módulos Usuario e Auth (e2e)', () => {
         foto: '-',
       })
       .expect(201)
- 
+
     usuarioId = resposta.body.id;
- 
+
   });
- 
- 
 
   it("02 - Não Deve Cadastrar um Usuário Duplicado", async () => {
     await request(app.getHttpServer())
@@ -102,5 +96,19 @@ describe('Testes dos Módulos Usuario e Auth (e2e)', () => {
     })
 
   })
+
+  it("06 - Buscar por Id", async() => {
+    return request (app.getHttpServer())
+    .get(`/usuarios/${usuarioId}`)
+    .set('Authorization',`${token}`)
+    .expect(200)
+    
+    .then((resposta) => {
+      // Verifica se o usuário retornado tem o ID correto
+      expect(resposta.body.id).toEqual(usuarioId);
+      
+    });
+});
+    
 
 });

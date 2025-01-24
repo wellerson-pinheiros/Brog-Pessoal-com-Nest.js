@@ -6,7 +6,7 @@ import { jwtConstants } from './constants/constants';
 import { AuthService } from './services/auth.service';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { LocalStrategy } from './strategy/local.strategy';
-import { Bcrypt } from 'src/bcrypt/bcrypt';
+import { Bcrypt } from '../bcrypt/bcrypt'
 import { AuthController } from './controllers/auth.controllers';
 
 @Module({

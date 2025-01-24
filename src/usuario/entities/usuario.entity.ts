@@ -2,7 +2,7 @@ import { IsEmail, IsNotEmpty, MinLength } from "class-validator"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 import { Transform, TransformFnParams } from "class-transformer"
-import { Postagem } from "src/postagem/entities/postagem.entity"
+import { Postagem } from "../../postagem/entities/postagem.entity"
 
 @Entity({name: "tb_usuarios"})
 export class Usuario {
