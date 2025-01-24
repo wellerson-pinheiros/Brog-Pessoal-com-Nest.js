@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator"
 import { Postagem } from "src/postagem/entities/postagem.entity"
+
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 
 
