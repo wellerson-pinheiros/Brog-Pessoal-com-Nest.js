@@ -1,6 +1,5 @@
 import { IsNotEmpty } from "class-validator"
 import { Postagem } from "../../postagem/entities/postagem.entity"
-
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { ApiProperty } from "@nestjs/swagger"
 
@@ -13,8 +12,8 @@ export class Tema {
     id: number
 
     @IsNotEmpty()
-    @ApiProperty()  
     @Column({length: 255, nullable: false})
+    @ApiProperty()  
     descricao: string
 
     @ApiProperty()  

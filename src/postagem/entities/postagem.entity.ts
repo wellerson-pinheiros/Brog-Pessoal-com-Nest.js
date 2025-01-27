@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator"
-import { Tema } from "../../Tema/entities/tema.entity"
+import { Tema } from "../../tema/entities/tema.entity"
 import { Usuario } from "../../usuario/entities/usuario.entity"
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import { ApiProperty } from "@nestjs/swagger"
