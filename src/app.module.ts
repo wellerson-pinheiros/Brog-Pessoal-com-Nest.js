@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { Usuario } from './usuario/entities/usuario.entity';
 import { Postagem } from './postagem/entities/postagem.entity';
+import { AppController } from './app.controller';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -26,7 +27,7 @@ import { Postagem } from './postagem/entities/postagem.entity';
     AuthModule,
     UsuarioModule
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
