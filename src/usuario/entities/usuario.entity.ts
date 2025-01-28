@@ -1,8 +1,9 @@
 import { IsEmail, IsNotEmpty, MinLength } from "class-validator"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Transform, TransformFnParams } from "class-transformer"
-import { Postagem } from "../../postagem/entities/postagem.entity"
+
 import { ApiProperty } from "@nestjs/swagger"
+import { Postagem } from "../../postagem/entities/postagem.entity"
 
 @Entity({name: "tb_usuarios"})
 export class Usuario {
