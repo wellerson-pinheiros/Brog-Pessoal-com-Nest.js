@@ -15,7 +15,7 @@ export class TemaService {
         return await this.temaRepository.find({
             relations: {
                 postagem: true
-            }
+            },
         });
     }
 
@@ -27,7 +27,7 @@ export class TemaService {
             },
             relations: {
                 postagem: true
-            }
+            },
         });
 
         if (!tema)
@@ -43,7 +43,7 @@ export class TemaService {
             },
             relations: {
                 postagem: true
-            }
+            },
         })
     }
 
